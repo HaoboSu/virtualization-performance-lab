@@ -1,0 +1,16 @@
+file,pressure_percent,condition,run,events_per_second,total_time_s,total_events,latency_min_ms,latency_avg_ms,latency_max_ms,latency_p95_ms
+baseline_run_1.txt,0,Baseline,1,2538.35,30.0001,76155,0.34,0.39,20.79,0.54
+baseline_run_2.txt,0,Baseline,2,2605.45,30.0006,78171,0.34,0.38,28.16,0.49
+baseline_run_3.txt,0,Baseline,3,2644.4,30.0002,79337,0.34,0.38,6.8,0.48
+baseline_run_4.txt,0,Baseline,4,2640.84,30.0004,79232,0.34,0.38,5.92,0.48
+baseline_run_5.txt,0,Baseline,5,2649.99,30.0003,79505,0.34,0.38,5.22,0.48
+medium_50_run_1.txt,50,50% pressure,1,2482.17,30.0003,74470,0.34,0.4,16.16,0.59
+medium_50_run_2.txt,50,50% pressure,2,2508.15,30.0002,75250,0.34,0.4,15.3,0.58
+medium_50_run_3.txt,50,50% pressure,3,2472.62,30.0003,74184,0.34,0.4,16.35,0.59
+medium_50_run_4.txt,50,50% pressure,4,2456.48,30.0001,73699,0.34,0.41,21.98,0.6
+medium_50_run_5.txt,50,50% pressure,5,2483.88,30.0002,74521,0.34,0.4,14.99,0.59
+heavy_100_run_1.txt,100,100% pressure,1,2292.29,30.011,68798,0.34,0.43,67.76,0.67
+heavy_100_run_2.txt,100,100% pressure,2,2245.07,30.0004,67357,0.34,0.44,23.43,0.68
+heavy_100_run_3.txt,100,100% pressure,3,2281.92,30.0004,68464,0.34,0.44,21.48,0.65
+heavy_100_run_4.txt,100,100% pressure,4,2243.49,30.0003,67309,0.34,0.44,27.02,0.68
+heavy_100_run_5.txt,100,100% pressure,5,2198.65,30.0002,65965,0.34,0.45,34.87,0.69
