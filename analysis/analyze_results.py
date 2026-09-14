@@ -40,6 +40,7 @@ Usage from the repository root:
 Optional:
     python3 analysis/analyze_results.py --raw-dir results/raw/pilot_v2
     python3 analysis/analyze_results.py --raw-dir /path/to/files --output-root /path/to/output
+    python3 analysis/analyze_results.py --raw-dir results/raw/formal_v1 --study-name formal_v1
 """
 
 from __future__ import annotations
@@ -51,7 +52,7 @@ import statistics
 import sys
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set, Tuple
 
 
 def parse_args() -> argparse.Namespace:
@@ -64,7 +65,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--raw-dir",
         type=Path,
-        default=Path("/home/haobo/virtualization-performance-lab/results/raw/pilot_v2/"),
+        default=default_repo_root / "results" / "raw" / "pilot_v2",
         help="Directory containing raw sysbench .txt files.",
     )
     parser.add_argument(
@@ -72,6 +73,21 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=default_repo_root,
         help="Repository/output root containing results/processed and figures.",
+    )
+    parser.add_argument(
+        "--study-name",
+        help=(
+            "Name used for generated CSV and figure directories. "
+            "Defaults to the raw-data directory name."
+        ),
+    )
+    parser.add_argument(
+        "--schedule",
+        type=Path,
+        help=(
+            "Optional experiment schedule CSV. When provided, analysis fails "
+            "if expected trials are missing or unexpected trials are present."
+        ),
     )
     return parser.parse_args()
 
@@ -158,6 +174,69 @@ def parse_sysbench_file(path: Path) -> Dict[str, object]:
         ),
     }
     return result
+
+
+def load_expected_trials(schedule_path: Path) -> Set[Tuple[int, int]]:
+    expected: Set[Tuple[int, int]] = set()
+
+    with schedule_path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle)
+        required_fields = {"load_percent", "run_number"}
+        if not reader.fieldnames or not required_fields.issubset(reader.fieldnames):
+            raise ValueError(
+                "Schedule must contain load_percent and run_number columns."
+            )
+
+        for line_number, row in enumerate(reader, start=2):
+            try:
+                trial = (int(row["load_percent"]), int(row["run_number"]))
+            except (TypeError, ValueError) as exc:
+                raise ValueError(
+                    f"Invalid load or run number on schedule line {line_number}."
+                ) from exc
+
+            if trial in expected:
+                raise ValueError(
+                    f"Duplicate scheduled trial: load={trial[0]}%, run={trial[1]}."
+                )
+            expected.add(trial)
+
+    if not expected:
+        raise ValueError("Schedule contains no trials.")
+
+    return expected
+
+
+def validate_trials(
+    rows: List[Dict[str, object]], schedule_path: Optional[Path]
+) -> None:
+    observed: Set[Tuple[int, int]] = set()
+
+    for row in rows:
+        trial = (int(row["pressure_percent"]), int(row["run"]))
+        if trial in observed:
+            raise ValueError(
+                f"Duplicate result trial: load={trial[0]}%, run={trial[1]}."
+            )
+        observed.add(trial)
+
+    if schedule_path is None:
+        return
+
+    expected = load_expected_trials(schedule_path)
+    missing = sorted(expected - observed)
+    unexpected = sorted(observed - expected)
+
+    messages: List[str] = []
+    if missing:
+        formatted = ", ".join(f"{load}%/run-{run}" for load, run in missing)
+        messages.append(f"missing trials: {formatted}")
+    if unexpected:
+        formatted = ", ".join(f"{load}%/run-{run}" for load, run in unexpected)
+        messages.append(f"unexpected trials: {formatted}")
+
+    if messages:
+        raise ValueError("Schedule validation failed; " + "; ".join(messages))
 
 
 def mean(values: List[float]) -> float:
@@ -425,6 +504,16 @@ def main() -> int:
     args = parse_args()
     raw_dir = args.raw_dir.expanduser().resolve()
     output_root = args.output_root.expanduser().resolve()
+    study_name = args.study_name or raw_dir.name
+    schedule_path = args.schedule.expanduser().resolve() if args.schedule else None
+
+    if not re.fullmatch(r"[A-Za-z0-9._-]+", study_name):
+        print(
+            "ERROR: study name may contain only letters, numbers, dots, "
+            "underscores and hyphens.",
+            file=sys.stderr,
+        )
+        return 1
 
     if not raw_dir.exists():
         print(f"ERROR: raw data directory does not exist: {raw_dir}", file=sys.stderr)
@@ -455,11 +544,20 @@ def main() -> int:
 
     rows.sort(key=lambda row: (int(row["pressure_percent"]), int(row["run"])))
 
-    processed_dir = output_root / "results" / "processed"
-    figures_dir = output_root / "figures"
+    try:
+        validate_trials(rows, schedule_path)
+    except (OSError, ValueError) as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
 
-    per_run_csv = processed_dir / "pilot_v2_results.csv"
-    summary_csv = processed_dir / "pilot_v2_summary.csv"
+    if schedule_path:
+        print(f"Schedule validation passed: {schedule_path}")
+
+    processed_dir = output_root / "results" / "processed"
+    figures_dir = output_root / "figures" / study_name
+
+    per_run_csv = processed_dir / f"{study_name}_results.csv"
+    summary_csv = processed_dir / f"{study_name}_summary.csv"
 
     write_per_run_csv(rows, per_run_csv)
     summary_rows = summarize(rows)
@@ -477,4 +575,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

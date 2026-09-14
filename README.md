@@ -12,7 +12,7 @@ This repository is part of my independent research portfolio in:
 - HPC–Cloud Convergence
 
 > **Status:** Active research project  
-> **Current stage:** Pilot study completed; expanded 25% / 75% conditions and larger-sample formal experiments planned.
+> **Current stage:** Pilot study completed; reproducible tooling and a blocked-randomized protocol for the 0% / 25% / 50% / 75% / 100% formal experiment are prepared.
 
 ---
 
@@ -271,15 +271,15 @@ This is a preliminary observation rather than a general causal conclusion.
 
 ### Throughput vs neighboring-VM CPU load
 
-![Throughput vs CPU pressure](figures/throughput_vs_pressure.png)
+![Throughput vs CPU pressure](figures/pilot_v2/throughput_vs_pressure.png)
 
 ### Average latency vs neighboring-VM CPU load
 
-![Average latency vs CPU pressure](figures/avg_latency_vs_pressure.png)
+![Average latency vs CPU pressure](figures/pilot_v2/avg_latency_vs_pressure.png)
 
 ### P95 latency vs neighboring-VM CPU load
 
-![P95 latency vs CPU pressure](figures/p95_latency_vs_pressure.png)
+![P95 latency vs CPU pressure](figures/pilot_v2/p95_latency_vs_pressure.png)
 
 ---
 
@@ -331,6 +331,23 @@ The script:
 - writes per-run and summary CSV files;
 - generates the figures shown above.
 
+The analysis uses repository-relative paths by default, so the pilot can be reproduced from a fresh clone with:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 analysis/analyze_results.py
+```
+
+For the next-stage data collection, the repository also provides:
+
+```text
+scripts/run_contention.sh     # run on contention-vm
+scripts/run_benchmark.sh      # run on benchmark-vm
+scripts/generate_schedule.py  # create a reproducible randomized schedule
+```
+
+The full procedure is documented in [`docs/formal-experiment-protocol.md`](docs/formal-experiment-protocol.md).
+
 ---
 
 ## 11. Repository Structure
@@ -344,9 +361,9 @@ virtualization-performance-lab/
 │   └── analyze_results.py
 │
 ├── scripts/
-│   ├── run_baseline.sh
-│   ├── run_medium.sh
-│   └── run_heavy.sh
+│   ├── generate_schedule.py
+│   ├── run_benchmark.sh
+│   └── run_contention.sh
 │
 ├── results/
 │   ├── raw/
@@ -361,13 +378,19 @@ virtualization-performance-lab/
 │       ├── pilot_v2_results.csv
 │       └── pilot_v2_summary.csv
 │
+├── experiments/
+│   └── formal_v1_schedule.csv
+│
 ├── figures/
-│   ├── throughput_vs_pressure.png
-│   ├── avg_latency_vs_pressure.png
-│   └── p95_latency_vs_pressure.png
+│   └── pilot_v2/
+│       ├── throughput_vs_pressure.png
+│       ├── avg_latency_vs_pressure.png
+│       └── p95_latency_vs_pressure.png
 │
 └── docs/
-    └── experimental-setup.md
+    ├── experimental-setup.md
+    ├── formal-experiment-protocol.md
+    └── pilot-study-report.md
 ```
 
 ---
@@ -428,7 +451,7 @@ Changes in:
 
 may correlate with experiment order.
 
-A future formal experiment will use a rotated or randomized condition order.
+The formal-v1 protocol uses a reproducible blocked-randomized condition order.
 
 ---
 
@@ -453,11 +476,13 @@ Increase from 5 to approximately 10–20 repetitions per condition.
 
 ### Improve experiment ordering
 
-Use a rotated or randomized condition order to reduce correlation between:
+Use the prepared blocked-randomized condition order to reduce correlation between:
 
 - contention level;
 - experiment time;
 - host temperature.
+
+The formal-v1 protocol begins with 10 repetitions per condition and can be extended to 20 after the first-stage data-quality check.
 
 ### Add custom latency benchmark
 

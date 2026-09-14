@@ -358,7 +358,7 @@ Relative to baseline:
 
 This produces a clear descending pattern across the three pilot conditions.
 
-![Throughput vs neighboring-VM CPU load](../figures/throughput_vs_pressure.png)
+![Throughput vs neighboring-VM CPU load](../figures/pilot_v2/throughput_vs_pressure.png)
 
 The result is consistent with the interpretation that increasing CPU demand in the neighboring VM can reduce the amount of CPU work completed by the benchmark VM in this host environment.
 
@@ -381,7 +381,7 @@ Relative to baseline:
 - the 50% condition increased mean latency by **5.24%**;
 - the 100% condition increased mean latency by **15.18%**.
 
-![Average latency vs neighboring-VM CPU load](../figures/avg_latency_vs_pressure.png)
+![Average latency vs neighboring-VM CPU load](../figures/pilot_v2/avg_latency_vs_pressure.png)
 
 The throughput and average-latency results are internally consistent: as the benchmark VM completes fewer events per second, the average time per event increases.
 
@@ -402,7 +402,7 @@ Relative to baseline:
 - the 50% condition increased P95 latency by **19.43%**;
 - the 100% condition increased P95 latency by **36.44%**.
 
-![P95 latency vs neighboring-VM CPU load](../figures/p95_latency_vs_pressure.png)
+![P95 latency vs neighboring-VM CPU load](../figures/pilot_v2/p95_latency_vs_pressure.png)
 
 At the 100% configured load condition, mean latency increased by approximately 15.2%, whereas P95 latency increased by approximately 36.4%.
 
