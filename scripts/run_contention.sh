@@ -15,8 +15,9 @@ fi
 LOAD="$1"
 RUN_NUMBER="$2"
 STUDY_NAME="${3:-formal_v1}"
-DURATION_SECONDS="${CONTENTION_DURATION_SECONDS:-60}"
+DURATION_SECONDS="${CONTENTION_DURATION_SECONDS:-120}"
 CPU_WORKERS="${CPU_WORKERS:-2}"
+CPU_METHOD="int64"
 
 if [[ ! "$LOAD" =~ ^(25|50|75|100)$ ]]; then
     echo "ERROR: load must be one of 25, 50, 75 or 100." >&2
@@ -61,27 +62,35 @@ if [[ -e "$OUTPUT_FILE" || -e "$TEMP_FILE" ]]; then
     exit 1
 fi
 
-echo "Starting ${CPU_WORKERS} stress-ng CPU workers at ${LOAD}% configured load"
+echo "Starting ${CPU_WORKERS} stress-ng CPU workers at ${LOAD}% configured load (${CPU_METHOD})"
 echo "Duration: ${DURATION_SECONDS}s"
 echo "Output: $OUTPUT_FILE"
-echo "Start scripts/run_benchmark.sh on benchmark-vm now."
+echo "After started_at appears, wait 10 seconds, then start run_benchmark.sh on benchmark-vm."
 
 {
     echo "study_name: $STUDY_NAME"
+    echo "collection_protocol: cpu_fixed_v1"
     echo "configured_load_percent: $LOAD"
     echo "run_number: $RUN_NUMBER"
-    echo "started_at: $(date -Is)"
+    echo "contention_duration_seconds: $DURATION_SECONDS"
+    echo "cpu_workers: $CPU_WORKERS"
+    echo "cpu_method: $CPU_METHOD"
     echo "hostname: $(hostname)"
     echo "kernel: $(uname -sr)"
     echo "stress_ng_version: $(stress-ng --version)"
+    echo "clock_synchronized: $(timedatectl show --property=NTPSynchronized --value 2>/dev/null || echo unknown)"
+    echo "repository_revision: $(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo unknown)"
+    echo "started_at: $(date --iso-8601=ns)"
     echo
     stress-ng \
         --cpu "$CPU_WORKERS" \
         --cpu-load "$LOAD" \
+        --cpu-method "$CPU_METHOD" \
         --timeout "${DURATION_SECONDS}s" \
         --metrics-brief
     echo
-    echo "finished_at: $(date -Is)"
+    echo "finished_at: $(date --iso-8601=ns)"
+    echo "exit_status: 0"
 } 2>&1 | tee "$TEMP_FILE"
 
 mv "$TEMP_FILE" "$OUTPUT_FILE"

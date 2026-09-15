@@ -350,6 +350,8 @@ scripts/generate_schedule.py  # create a reproducible randomized schedule
 
 The full procedure is documented in [`docs/formal-experiment-protocol.md`](docs/formal-experiment-protocol.md).
 
+Before formal collection, follow the [smoke-v2 rehearsal](docs/smoke-v2-quickstart.md). The revised scripts use a 120-second `int64` load window and record warm-up, completion and clock status. New-data analysis requires `--contention-dir` for paired log validation; formal summaries also require `--schedule`. Single-run SD/CV are reported as `NA`. The [environment record](docs/experimental-setup.md) includes the confirmed Workstation version and Windows Balanced power plan.
+
 ---
 
 ## 11. Repository Structure

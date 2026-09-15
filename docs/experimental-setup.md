@@ -2,15 +2,18 @@
 
 ## Host System
 
-- **Host OS:** Windows 10 Enterprise
+- **Host OS:** Windows 10 Enterprise, 64-bit, build **19045.6456**
 - **CPU:** Intel Core i3-1005G1 @ 1.20 GHz
 - **Physical cores:** 2
 - **Logical processors:** 4
 - **RAM:** 8 GB
-- **Hypervisor:** VMware Workstation
+- **Hypervisor:** VMware Workstation **17 Pro, 17.6.1 build-24319023**
+- **Windows power plan:** **Balanced** (`381b4222-f694-41f0-9685-ff5bb260df2e`)
 - **Hardware virtualization:** Enabled in firmware
 
-> The exact VMware Workstation version and Windows power-mode setting will be recorded before the formal experiment. No process-level CPU affinity will be used.
+The Workstation version, Windows build and active power plan were confirmed from the author's screenshots on 2026-09-15. Keep this power plan and AC power throughout collection. The screenshots do not establish a separate Windows power-mode slider setting or historical settings during pilot/smoke-v1. Record any separate slider setting in session notes if present. No process-level CPU affinity will be used.
+
+On 2026-09-15, both `benchmark-vm` and `contention-vm` reported UTC, `System clock synchronized: yes`, and `NTP service: active`. These are status observations, not a measurement of inter-VM clock offset or proof of past synchronization.
 
 ---
 
@@ -79,11 +82,13 @@ The accepted pilot used the 0%, 50% and 100% conditions. The formal-v1 protocol 
 sysbench cpu --threads=1 --time=30 run
 ```
 
-### Example contention command on VM2
+### Contention command for smoke-v2 and formal-v1 on VM2
 
 ```bash
-stress-ng --cpu 2 --cpu-load 50 --timeout 60s
+stress-ng --cpu 2 --cpu-load 50 --cpu-method int64 --timeout 120s
 ```
+
+The fixed `int64` method is supported by [stress-ng 0.17.06](https://github.com/ColinIanKing/stress-ng/blob/V0.17.06/stress-cpu.c). It holds the kind of CPU work constant while configured load varies. Earlier pilot and smoke-v1 runs used the default method; preserve them as separate datasets.
 
 ---
 

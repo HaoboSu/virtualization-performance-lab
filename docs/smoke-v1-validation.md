@@ -37,7 +37,7 @@ Relative to the two-run baseline mean, the accepted 25% observation has **15.37%
 
 The existing analysis script outputs `0.0` for sample SD and CV when `n=1`. Those entries in the 25% summary are legacy placeholders: variability is **not estimable** from a single run. The absent error bars at 25% therefore do not demonstrate zero variability. Baseline throughput sample SD is 55.15 events/s and CV is 2.27%, based on only two runs.
 
-P95 summaries are arithmetic means of per-run P95 values, not a percentile calculated over pooled event latencies. The figure x-axis represents configured `stress-ng` load, not measured host CPU utilization. Both contention logs retain the warning about the default `all` CPU method. The second contention run used a 120-second duration; the collection script's default remains 60 seconds.
+P95 summaries are arithmetic means of per-run P95 values, not a percentile calculated over pooled event latencies. The figure x-axis represents configured `stress-ng` load, not measured host CPU utilization. Both contention logs retain the warning about the default `all` CPU method. The second contention run used a 120-second duration; at the archival commit `3b8ad2d`, the collection script's default was 60 seconds.
 
 ## Reproduce the checked summary
 
@@ -51,6 +51,8 @@ python3 analysis/analyze_results.py \
 ```
 
 This writes a separate recomputation. The checked copies retain `study_name: smoke_v1` in their original log metadata; `smoke_v1_checked` names the selected dataset and its analysis outputs. Analyze that subset to reproduce the reported observations. Analyzing all four original logs would include the excluded trial.
+
+The subsequent formal-preparation revision outputs `NA` instead of `0.0` for single-run SD/CV and labels that limitation on regenerated figures. Means and relative changes remain the same. Exact reproduction of the archived CSVs uses the analyzer at commit `7cd0a3c`; the uploaded smoke-v1 artifacts are preserved unchanged.
 
 Source archive SHA-256 digests:
 

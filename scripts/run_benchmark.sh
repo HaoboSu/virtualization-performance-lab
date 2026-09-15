@@ -81,26 +81,31 @@ echo "Warm-up: ${WARMUP_SECONDS}s"
 echo "Measurement: ${DURATION_SECONDS}s"
 echo "Output: $OUTPUT_FILE"
 
-if (( WARMUP_SECONDS > 0 )); then
-    sysbench cpu --threads="$THREADS" --time="$WARMUP_SECONDS" run >/dev/null
-fi
-
 {
     echo "study_name: $STUDY_NAME"
+    echo "collection_protocol: cpu_fixed_v1"
     echo "configured_neighbor_load_percent: $LOAD"
     echo "run_number: $RUN_NUMBER"
     echo "benchmark_duration_seconds: $DURATION_SECONDS"
     echo "benchmark_threads: $THREADS"
     echo "warmup_seconds: $WARMUP_SECONDS"
-    echo "started_at: $(date -Is)"
     echo "hostname: $(hostname)"
     echo "kernel: $(uname -sr)"
     echo "sysbench_version: $(sysbench --version)"
+    echo "clock_synchronized: $(timedatectl show --property=NTPSynchronized --value 2>/dev/null || echo unknown)"
+    echo "repository_revision: $(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo unknown)"
+    echo "warmup_started_at: $(date --iso-8601=ns)"
+    if (( WARMUP_SECONDS > 0 )); then
+        sysbench cpu --threads="$THREADS" --time="$WARMUP_SECONDS" run >/dev/null
+    fi
+    echo "warmup_finished_at: $(date --iso-8601=ns)"
+    echo "started_at: $(date --iso-8601=ns)"
     echo
     sysbench cpu --threads="$THREADS" --time="$DURATION_SECONDS" run
     echo
-    echo "finished_at: $(date -Is)"
-} | tee "$TEMP_FILE"
+    echo "finished_at: $(date --iso-8601=ns)"
+    echo "exit_status: 0"
+} 2>&1 | tee "$TEMP_FILE"
 
 mv "$TEMP_FILE" "$OUTPUT_FILE"
 echo "Saved: $OUTPUT_FILE"
