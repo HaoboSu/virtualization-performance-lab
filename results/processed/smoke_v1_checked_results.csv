@@ -1,0 +1,4 @@
+file,pressure_percent,condition,run,events_per_second,total_time_s,total_events,latency_min_ms,latency_avg_ms,latency_max_ms,latency_p95_ms
+baseline_run_1.txt,0,Baseline,1,2470.21,30.0002,74111,0.34,0.4,12.22,0.56
+baseline_run_2.txt,0,Baseline,2,2392.21,30.0001,71771,0.34,0.42,36.99,0.58
+contention_25_run_2.txt,25,25% pressure,2,2057.57,30.0005,61734,0.34,0.48,43.85,0.74

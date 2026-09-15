@@ -14,6 +14,8 @@ This repository is part of my independent research portfolio in:
 > **Status:** Active research project  
 > **Current stage:** Pilot study completed; reproducible tooling and a blocked-randomized protocol for the 0% / 25% / 50% / 75% / 100% formal experiment are prepared.
 
+The [smoke-v1 validation record](docs/smoke-v1-validation.md) archives the two-VM workflow check, matching load logs, checked results, and the timing-based exclusion of one trial. These smoke observations are separate from the pilot findings below and are not formal experimental results.
+
 ---
 
 ## 1. Research Question

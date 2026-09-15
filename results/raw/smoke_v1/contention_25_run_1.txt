@@ -1,0 +1,44 @@
+study_name: smoke_v1
+configured_neighbor_load_percent: 25
+run_number: 1
+benchmark_duration_seconds: 30
+benchmark_threads: 1
+warmup_seconds: 5
+started_at: 2026-09-14T07:19:29+00:00
+hostname: benchmark-vm
+kernel: Linux 6.8.0-138-generic
+sysbench_version: sysbench 1.0.20
+
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  1238.41
+
+General statistics:
+    total time:                          30.0002s
+    total number of events:              37155
+
+Latency (ms):
+         min:                                    0.34
+         avg:                                    0.80
+         max:                                   28.25
+         95th percentile:                        1.96
+         sum:                                29899.21
+
+Threads fairness:
+    events (avg/stddev):           37155.0000/0.00
+    execution time (avg/stddev):   29.8992/0.00
+
+
+finished_at: 2026-09-14T07:19:59+00:00
