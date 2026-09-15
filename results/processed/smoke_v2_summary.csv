@@ -1,0 +1,6 @@
+pressure_percent,condition,n,throughput_mean_events_s,throughput_median_events_s,throughput_sd_events_s,throughput_cv_percent,throughput_degradation_vs_baseline_percent,avg_latency_mean_ms,avg_latency_median_ms,avg_latency_sd_ms,avg_latency_cv_percent,avg_latency_increase_vs_baseline_percent,p95_latency_mean_ms,p95_latency_median_ms,p95_latency_sd_ms,p95_latency_cv_percent,p95_latency_increase_vs_baseline_percent,max_latency_mean_ms,max_latency_median_ms
+0,Baseline,1,2650.38,2650.38,NA,NA,0.0,0.38,0.38,NA,NA,0.0,0.48,0.48,NA,NA,0.0,31.3,31.3
+25,25% pressure,1,2506.77,2506.77,NA,NA,5.418468295112404,0.4,0.4,NA,NA,5.263157894736847,0.57,0.57,NA,NA,18.749999999999993,33.57,33.57
+50,50% pressure,1,2557.54,2557.54,NA,NA,3.5028939246447734,0.39,0.39,NA,NA,2.6315789473684235,0.54,0.54,NA,NA,12.50000000000001,40.23,40.23
+75,75% pressure,1,2506.93,2506.93,NA,NA,5.412431424927757,0.4,0.4,NA,NA,5.263157894736847,0.6,0.6,NA,NA,25.0,22.9,22.9
+100,100% pressure,1,2424.9,2424.9,NA,NA,8.507459307721913,0.41,0.41,NA,NA,7.894736842105256,0.58,0.58,NA,NA,20.83333333333333,86.0,86.0

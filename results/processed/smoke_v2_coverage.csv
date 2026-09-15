@@ -1,0 +1,6 @@
+file,load_percent,run,load_start_margin_s,load_end_margin_s,status
+baseline_run_1.txt,0,1,NA,NA,no_recorded_load_overlap
+contention_25_run_1.txt,25,1,29.535622,55.456243,covered
+contention_50_run_1.txt,50,1,13.859837,71.113544,covered
+contention_75_run_1.txt,75,1,15.183456,69.780481,covered
+contention_100_run_1.txt,100,1,16.839621,68.101991,covered

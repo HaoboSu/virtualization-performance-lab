@@ -1,0 +1,28 @@
+study_name: smoke_v2
+collection_protocol: cpu_fixed_v1
+configured_load_percent: 25
+run_number: 1
+contention_duration_seconds: 120
+cpu_workers: 2
+cpu_method: int64
+hostname: contention-vm
+kernel: Linux 6.8.0-138-generic
+stress_ng_version: stress-ng, version 0.17.06 (gcc 13.2.0, x86_64 Linux 6.8.0-138-generic)
+clock_synchronized: yes
+repository_revision: 97c28ca6a3d61920e24cba6466d7555f03369b10
+started_at: 2026-09-15T01:53:51,914205806+00:00
+
+stress-ng: info:  [4114] setting to a 2 mins, 0 secs run per stressor
+stress-ng: info:  [4114] dispatching hogs: 2 cpu
+stress-ng: info:  [4114] note: /proc/sys/kernel/sched_autogroup_enabled is 1 and this can impact scheduling throughput for processes not attached to a tty. Setting this to 0 may improve performance metrics
+stress-ng: metrc: [4114] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+stress-ng: metrc: [4114]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: metrc: [4114] cpu              120781    120.03     61.24      0.52      1006.29        1955.44
+stress-ng: info:  [4114] skipped: 0
+stress-ng: info:  [4114] passed: 2: cpu (2)
+stress-ng: info:  [4114] failed: 0
+stress-ng: info:  [4114] metrics untrustworthy: 0
+stress-ng: info:  [4114] successful run completed in 2 mins, 0.03 secs
+
+finished_at: 2026-09-15T01:55:51,974300873+00:00
+exit_status: 0

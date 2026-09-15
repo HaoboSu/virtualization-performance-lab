@@ -12,9 +12,11 @@ This repository is part of my independent research portfolio in:
 - HPC–Cloud Convergence
 
 > **Status:** Active research project  
-> **Current stage:** Pilot study completed; reproducible tooling and a blocked-randomized protocol for the 0% / 25% / 50% / 75% / 100% formal experiment are prepared.
+> **Current stage:** Pilot study completed; the fixed-load smoke-v2 rehearsal passed collection and analysis checks at all five load levels. A blocked-randomized protocol for the formal experiment is prepared; formal measurements remain to be collected.
 
 The [smoke-v1 validation record](docs/smoke-v1-validation.md) archives the two-VM workflow check, matching load logs, checked results, and the timing-based exclusion of one trial. These smoke observations are separate from the pilot findings below and are not formal experimental results.
+
+The [smoke-v2 validation record](docs/smoke-v2-validation.md) archives five benchmark logs and four paired load logs collected with the fixed `int64` method, explicit warm-up timestamps, and successful coverage checks. It links the regenerated summaries, coverage CSV, and figures. Each condition has one observation, so sample SD/CV are unavailable; these results remain separate from the formal dataset.
 
 ---
 
