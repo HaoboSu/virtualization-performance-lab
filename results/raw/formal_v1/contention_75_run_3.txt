@@ -1,0 +1,50 @@
+study_name: formal_v1
+collection_protocol: cpu_fixed_v1
+configured_neighbor_load_percent: 75
+run_number: 3
+benchmark_duration_seconds: 30
+benchmark_threads: 1
+warmup_seconds: 5
+hostname: benchmark-vm
+kernel: Linux 6.8.0-139-generic
+sysbench_version: sysbench 1.0.20
+clock_synchronized: yes
+repository_revision: 97c28ca6a3d61920e24cba6466d7555f03369b10
+warmup_started_at: 2026-09-16T01:58:54,859179069+00:00
+warmup_finished_at: 2026-09-16T01:58:59,875635284+00:00
+started_at: 2026-09-16T01:58:59,885779311+00:00
+
+sysbench 1.0.20 (using system LuaJIT 2.1.0-beta3)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+CPU speed:
+    events per second:  2399.74
+
+General statistics:
+    total time:                          30.0003s
+    total number of events:              71997
+
+Latency (ms):
+         min:                                    0.34
+         avg:                                    0.42
+         max:                                   40.23
+         95th percentile:                        0.62
+         sum:                                29921.05
+
+Threads fairness:
+    events (avg/stddev):           71997.0000/0.00
+    execution time (avg/stddev):   29.9210/0.00
+
+
+finished_at: 2026-09-16T01:59:29,921639604+00:00
+exit_status: 0

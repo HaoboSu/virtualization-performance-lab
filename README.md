@@ -12,11 +12,13 @@ This repository is part of my independent research portfolio in:
 - HPC–Cloud Convergence
 
 > **Status:** Active research project  
-> **Current stage:** Pilot study completed; the fixed-load smoke-v2 rehearsal passed collection and analysis checks at all five load levels. A blocked-randomized protocol for the formal experiment is prepared; formal measurements remain to be collected.
+> **Current stage:** Formal-v1 session 1 is archived: **25 of 50 scheduled benchmark trials**, with five repetitions at each of five load levels and 20 paired load logs. File, parameter, schedule, and load-coverage checks passed. Session 2 remains to be collected; the current summaries are interim observations.
 
 The [smoke-v1 validation record](docs/smoke-v1-validation.md) archives the two-VM workflow check, matching load logs, checked results, and the timing-based exclusion of one trial. These smoke observations are separate from the pilot findings below and are not formal experimental results.
 
 The [smoke-v2 validation record](docs/smoke-v2-validation.md) archives five benchmark logs and four paired load logs collected with the fixed `int64` method, explicit warm-up timestamps, and successful coverage checks. It links the regenerated summaries, coverage CSV, and figures. Each condition has one observation, so sample SD/CV are unavailable; these results remain separate from the formal dataset.
+
+The [formal-v1 session-1 validation record](docs/formal-v1-session1-validation.md) links the [25 benchmark logs](results/raw/formal_v1/), [20 paired load logs](results/contention/formal_v1/), [interim summary](results/processed/formal_v1_session1_summary.csv), and reproducible validation commands. These measurements were collected on 2026-09-16 and cover blocks 1–5 of the unchanged 50-trial schedule. They are kept separate from the pilot and smoke studies.
 
 ---
 
@@ -30,11 +32,13 @@ The current experiment uses a two-VM setup:
 - **VM2 (`contention-vm`)** generates synthetic CPU load with `stress-ng`.
 - VM1 performance is measured under different configured CPU-load levels in VM2.
 
-The current pilot compares:
+The archived pilot compares:
 
 - **0%** configured load in VM2 (baseline)
 - **50%** configured load in VM2
 - **100%** configured load in VM2
+
+Formal-v1 measures **0%, 25%, 50%, 75%, and 100%**, following the [blocked-randomized protocol](docs/formal-experiment-protocol.md).
 
 The 50% and 100% values refer to the `stress-ng --cpu-load` configuration **inside the neighboring VM**. They do **not** represent measured total host CPU utilization.
 
@@ -81,7 +85,7 @@ These effects are relevant to:
 
 - **Hostname:** `benchmark-vm`
 - **Guest OS:** Ubuntu Server 24.04 LTS
-- **Kernel:** `6.8.0-138-generic`
+- **Recorded kernel:** `6.8.0-138-generic` in the pilot/smoke records; `6.8.0-139-generic` in formal-v1 session 1
 - **vCPU:** 1
 - **RAM:** 2 GB nominal
 - **Primary tool:** `sysbench 1.0.20`
@@ -91,7 +95,7 @@ These effects are relevant to:
 
 - **Hostname:** `contention-vm`
 - **Guest OS:** Ubuntu Server 24.04 LTS
-- **Kernel:** `6.8.0-138-generic`
+- **Recorded kernel:** `6.8.0-138-generic` in the pilot/smoke records; `6.8.0-139-generic` in formal-v1 session 1
 - **vCPU:** 2
 - **RAM:** 2 GB nominal
 - **Primary tool:** `stress-ng 0.17.06`
@@ -165,7 +169,7 @@ Current pilot size:
 3 conditions × 5 repetitions = 15 benchmark runs
 ```
 
-The next stage will expand the experiment to include **25% and 75% configured load**, followed by a larger number of repetitions per condition.
+Formal-v1 expands the experiment to all five configured load levels, with **10 planned repetitions per condition**. Session 1 contains the first five repetitions at each level; the remaining five are scheduled for session 2.
 
 ---
 
@@ -352,7 +356,9 @@ scripts/generate_schedule.py  # create a reproducible randomized schedule
 
 The full procedure is documented in [`docs/formal-experiment-protocol.md`](docs/formal-experiment-protocol.md).
 
-Before formal collection, follow the [smoke-v2 rehearsal](docs/smoke-v2-quickstart.md). The revised scripts use a 120-second `int64` load window and record warm-up, completion and clock status. New-data analysis requires `--contention-dir` for paired log validation; formal summaries also require `--schedule`. Single-run SD/CV are reported as `NA`. The [environment record](docs/experimental-setup.md) includes the confirmed Workstation version and Windows Balanced power plan.
+The [smoke-v2 rehearsal](docs/smoke-v2-quickstart.md) was completed before formal collection. The revised scripts use a 120-second `int64` load window and record warm-up, completion and clock status. New-data analysis requires `--contention-dir` for paired log validation; formal summaries also require `--schedule`. Single-run SD/CV are reported as `NA`. The [environment record](docs/experimental-setup.md) includes the confirmed Workstation version and Windows Balanced power plan.
+
+Formal-v1 session-1 snapshots are named `formal_v1_session1_results.csv`, `formal_v1_session1_summary.csv`, and `formal_v1_session1_coverage.csv` under `results/processed/`. The [session-1 schedule subset](experiments/formal_v1_session1_schedule.csv) identifies the 25 archived trials. The complete [formal-v1 schedule](experiments/formal_v1_schedule.csv) still requires 50 trials; session-1 validation does not certify completion of the full experiment.
 
 ---
 
@@ -403,13 +409,11 @@ virtualization-performance-lab/
 
 ## 12. Current Limitations
 
-The current results should be interpreted as a **small-scale pilot study**.
+The pilot results and interim formal-v1 session-1 observations are **small-scale, single-host measurements**. The formal dataset is not yet complete.
 
 ### 12.1 Small sample size
 
-Only five repetitions were collected for each condition.
-
-A larger formal experiment is planned.
+The pilot and formal-v1 session-1 summaries each contain five repetitions per condition. Formal-v1 plans ten per condition, with session 2 still pending.
 
 ### 12.2 Laptop-class host
 
@@ -463,32 +467,11 @@ The formal-v1 protocol uses a reproducible blocked-randomized condition order.
 
 ## 13. Planned Next Steps
 
-### Expand contention levels
+### Complete formal-v1 session 2
 
-Add:
+Collect blocks 6–10 of the existing schedule, adding 25 benchmark trials and 20 paired load logs. Keep the collection settings and block order fixed, then validate all 50 trials against the complete schedule before producing final summaries.
 
-- 25% configured VM2 CPU load
-- 75% configured VM2 CPU load
-
-to create the full pilot curve:
-
-```text
-0% → 25% → 50% → 75% → 100%
-```
-
-### Increase repetitions
-
-Increase from 5 to approximately 10–20 repetitions per condition.
-
-### Improve experiment ordering
-
-Use the prepared blocked-randomized condition order to reduce correlation between:
-
-- contention level;
-- experiment time;
-- host temperature.
-
-The formal-v1 protocol begins with 10 repetitions per condition and can be extended to 20 after the first-stage data-quality check.
+The first session already covers all five load conditions. Session 2 will bring the total to ten repetitions per condition. Any later extension to 20 repetitions per condition should be documented separately.
 
 ### Add custom latency benchmark
 

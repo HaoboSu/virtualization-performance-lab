@@ -1,0 +1,28 @@
+study_name: formal_v1
+collection_protocol: cpu_fixed_v1
+configured_load_percent: 100
+run_number: 1
+contention_duration_seconds: 120
+cpu_workers: 2
+cpu_method: int64
+hostname: contention-vm
+kernel: Linux 6.8.0-139-generic
+stress_ng_version: stress-ng, version 0.17.06 (gcc 13.2.0, x86_64 Linux 6.8.0-139-generic)
+clock_synchronized: yes
+repository_revision: 97c28ca6a3d61920e24cba6466d7555f03369b10
+started_at: 2026-09-16T01:24:46,826436315+00:00
+
+stress-ng: info:  [1715] setting to a 2 mins, 0 secs run per stressor
+stress-ng: info:  [1715] dispatching hogs: 2 cpu
+stress-ng: info:  [1715] note: /proc/sys/kernel/sched_autogroup_enabled is 1 and this can impact scheduling throughput for processes not attached to a tty. Setting this to 0 may improve performance metrics
+stress-ng: metrc: [1715] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s
+stress-ng: metrc: [1715]                           (secs)    (secs)    (secs)   (real time) (usr+sys time)
+stress-ng: metrc: [1715] cpu              397573    120.00    239.15      0.11      3313.10        1661.71
+stress-ng: info:  [1715] skipped: 0
+stress-ng: info:  [1715] passed: 2: cpu (2)
+stress-ng: info:  [1715] failed: 0
+stress-ng: info:  [1715] metrics untrustworthy: 0
+stress-ng: info:  [1715] successful run completed in 2 mins, 0.01 secs
+
+finished_at: 2026-09-16T01:26:46,854898915+00:00
+exit_status: 0

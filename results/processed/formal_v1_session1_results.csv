@@ -1,0 +1,26 @@
+file,pressure_percent,condition,run,events_per_second,total_time_s,total_events,latency_min_ms,latency_avg_ms,latency_max_ms,latency_p95_ms
+baseline_run_1.txt,0,Baseline,1,2595.86,30.0003,77884,0.34,0.38,35.75,0.48
+baseline_run_2.txt,0,Baseline,2,2580.39,30.0003,77417,0.34,0.39,33.7,0.5
+baseline_run_3.txt,0,Baseline,3,2671.28,30.0003,80144,0.34,0.37,15.83,0.46
+baseline_run_4.txt,0,Baseline,4,2613.22,30.0003,78402,0.34,0.38,23.79,0.47
+baseline_run_5.txt,0,Baseline,5,2680.9,30.0001,80432,0.34,0.37,5.12,0.45
+contention_25_run_1.txt,25,25% pressure,1,2484.73,30.0004,74547,0.34,0.4,47.39,0.56
+contention_25_run_2.txt,25,25% pressure,2,2609.16,30.0002,78280,0.34,0.38,6.27,0.49
+contention_25_run_3.txt,25,25% pressure,3,2518.31,30.0002,75554,0.34,0.4,36.6,0.54
+contention_25_run_4.txt,25,25% pressure,4,2424.07,30.0003,72727,0.34,0.41,41.47,0.6
+contention_25_run_5.txt,25,25% pressure,5,2525.28,30.0003,75764,0.34,0.39,5.39,0.54
+contention_50_run_1.txt,50,50% pressure,1,2513.33,30.0003,75405,0.34,0.4,35.48,0.56
+contention_50_run_2.txt,50,50% pressure,2,2465.66,30.0001,73974,0.34,0.4,36.45,0.59
+contention_50_run_3.txt,50,50% pressure,3,2461.82,30.0002,73881,0.34,0.4,21.32,0.59
+contention_50_run_4.txt,50,50% pressure,4,2488.69,30.0005,74667,0.34,0.4,39.14,0.57
+contention_50_run_5.txt,50,50% pressure,5,2509.34,30.0001,75285,0.34,0.4,19.68,0.56
+contention_75_run_1.txt,75,75% pressure,1,2378.45,30.0007,71362,0.34,0.42,38.36,0.64
+contention_75_run_2.txt,75,75% pressure,2,2435.07,30.0003,73057,0.34,0.41,38.64,0.61
+contention_75_run_3.txt,75,75% pressure,3,2399.74,30.0003,71997,0.34,0.42,40.23,0.62
+contention_75_run_4.txt,75,75% pressure,4,2316.48,30.0001,69499,0.34,0.43,35.36,0.69
+contention_75_run_5.txt,75,75% pressure,5,2287.82,30.0001,68639,0.34,0.44,11.05,0.73
+contention_100_run_1.txt,100,100% pressure,1,2263.39,30.0003,67906,0.34,0.44,71.84,0.64
+contention_100_run_2.txt,100,100% pressure,2,1753.41,30.0004,52617,0.39,0.57,60.64,0.89
+contention_100_run_3.txt,100,100% pressure,3,2346.45,30.0003,70398,0.34,0.43,46.62,0.6
+contention_100_run_4.txt,100,100% pressure,4,2332.22,30.0001,69971,0.34,0.43,40.43,0.62
+contention_100_run_5.txt,100,100% pressure,5,2430.14,30.0004,72910,0.34,0.41,26.82,0.55
