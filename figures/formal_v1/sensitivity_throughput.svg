@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+<style>text{font-family:Arial,sans-serif;fill:#222}.axis{stroke:#333;stroke-width:1}.grid{stroke:#ddd;stroke-width:1}.line{fill:none;stroke:#2563eb;stroke-width:2.5}.line2{fill:none;stroke:#dc2626;stroke-width:2.5}.pt{fill:#2563eb}.pt2{fill:#dc2626}</style>
+<text x="380.0" y="28" text-anchor="middle" font-size="18" font-weight="700">Formal v1: sensitivity analysis</text>
+<line class="grid" x1="80" y1="395.0" x2="730" y2="395.0"/><text x="70" y="399.0" text-anchor="end" font-size="12">2351.2</text>
+<line class="grid" x1="80" y1="327.0" x2="730" y2="327.0"/><text x="70" y="331.0" text-anchor="end" font-size="12">2416.6</text>
+<line class="grid" x1="80" y1="259.0" x2="730" y2="259.0"/><text x="70" y="263.0" text-anchor="end" font-size="12">2482.1</text>
+<line class="grid" x1="80" y1="191.0" x2="730" y2="191.0"/><text x="70" y="195.0" text-anchor="end" font-size="12">2547.5</text>
+<line class="grid" x1="80" y1="123.0" x2="730" y2="123.0"/><text x="70" y="127.0" text-anchor="end" font-size="12">2613.0</text>
+<line class="grid" x1="80" y1="55.0" x2="730" y2="55.0"/><text x="70" y="59.0" text-anchor="end" font-size="12">2678.4</text>
+<line class="grid" x1="80.0" y1="55" x2="80.0" y2="395"/><text x="80.0" y="417" text-anchor="middle" font-size="12">0</text>
+<line class="grid" x1="242.5" y1="55" x2="242.5" y2="395"/><text x="242.5" y="417" text-anchor="middle" font-size="12">25</text>
+<line class="grid" x1="405.0" y1="55" x2="405.0" y2="395"/><text x="405.0" y="417" text-anchor="middle" font-size="12">50</text>
+<line class="grid" x1="567.5" y1="55" x2="567.5" y2="395"/><text x="567.5" y="417" text-anchor="middle" font-size="12">75</text>
+<line class="grid" x1="730.0" y1="55" x2="730.0" y2="395"/><text x="730.0" y="417" text-anchor="middle" font-size="12">100</text>
+<line class="axis" x1="80" y1="55" x2="80" y2="395"/><line class="axis" x1="80" y1="395" x2="730" y2="395"/>
+<text x="380.0" y="442" text-anchor="middle" font-size="13">Configured neighbor CPU load (%)</text><text x="20" y="230.0" transform="rotate(-90 20 230.0)" text-anchor="middle" font-size="13">Mean VM1 throughput (events/s)</text>
+<polyline class="line" points="80.0,78.4 242.5,203.6 405.0,264.9 567.5,345.3 730.0,371.6"/>
+<circle class="pt" cx="80.0" cy="78.4" r="4"/><circle class="pt" cx="242.5" cy="203.6" r="4"/><circle class="pt" cx="405.0" cy="264.9" r="4"/><circle class="pt" cx="567.5" cy="345.3" r="4"/><circle class="pt" cx="730.0" cy="371.6" r="4"/>
+<line class="line" x1="550" y1="48" x2="580" y2="48"/><text x="588" y="52" font-size="12">Primary: all runs</text>
+<polyline class="line2" points="80.0,78.4 242.5,203.6 405.0,236.2 567.5,345.3 730.0,299.9"/>
+<circle class="pt2" cx="80.0" cy="78.4" r="4"/><circle class="pt2" cx="242.5" cy="203.6" r="4"/><circle class="pt2" cx="405.0" cy="236.2" r="4"/><circle class="pt2" cx="567.5" cy="345.3" r="4"/><circle class="pt2" cx="730.0" cy="299.9" r="4"/>
+<line class="line2" x1="550" y1="66" x2="580" y2="66"/><text x="588" y="70" font-size="12">Sensitivity: IQR outliers excluded</text>
+</svg>
