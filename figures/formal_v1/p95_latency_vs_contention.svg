@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+<style>text{font-family:Arial,sans-serif;fill:#222}.axis{stroke:#333;stroke-width:1}.grid{stroke:#ddd;stroke-width:1}.line{fill:none;stroke:#2563eb;stroke-width:2.5}.line2{fill:none;stroke:#dc2626;stroke-width:2.5}.pt{fill:#2563eb}.pt2{fill:#dc2626}</style>
+<text x="380.0" y="28" text-anchor="middle" font-size="18" font-weight="700">Formal v1: P95 latency vs neighbor CPU contention</text>
+<line class="grid" x1="80" y1="395.0" x2="730" y2="395.0"/><text x="70" y="399.0" text-anchor="end" font-size="12">0.5</text>
+<line class="grid" x1="80" y1="327.0" x2="730" y2="327.0"/><text x="70" y="331.0" text-anchor="end" font-size="12">0.5</text>
+<line class="grid" x1="80" y1="259.0" x2="730" y2="259.0"/><text x="70" y="263.0" text-anchor="end" font-size="12">0.5</text>
+<line class="grid" x1="80" y1="191.0" x2="730" y2="191.0"/><text x="70" y="195.0" text-anchor="end" font-size="12">0.6</text>
+<line class="grid" x1="80" y1="123.0" x2="730" y2="123.0"/><text x="70" y="127.0" text-anchor="end" font-size="12">0.6</text>
+<line class="grid" x1="80" y1="55.0" x2="730" y2="55.0"/><text x="70" y="59.0" text-anchor="end" font-size="12">0.7</text>
+<line class="grid" x1="80.0" y1="55" x2="80.0" y2="395"/><text x="80.0" y="417" text-anchor="middle" font-size="12">0</text>
+<line class="grid" x1="242.5" y1="55" x2="242.5" y2="395"/><text x="242.5" y="417" text-anchor="middle" font-size="12">25</text>
+<line class="grid" x1="405.0" y1="55" x2="405.0" y2="395"/><text x="405.0" y="417" text-anchor="middle" font-size="12">50</text>
+<line class="grid" x1="567.5" y1="55" x2="567.5" y2="395"/><text x="567.5" y="417" text-anchor="middle" font-size="12">75</text>
+<line class="grid" x1="730.0" y1="55" x2="730.0" y2="395"/><text x="730.0" y="417" text-anchor="middle" font-size="12">100</text>
+<line class="axis" x1="80" y1="55" x2="80" y2="395"/><line class="axis" x1="80" y1="395" x2="730" y2="395"/>
+<text x="380.0" y="442" text-anchor="middle" font-size="13">Configured neighbor CPU load (%)</text><text x="20" y="230.0" transform="rotate(-90 20 230.0)" text-anchor="middle" font-size="13">VM1 P95 latency (ms)</text>
+<polyline class="line" points="80.0,371.6 242.5,263.9 405.0,169.5 567.5,78.4 730.0,148.0"/>
+<circle class="pt" cx="80.0" cy="371.6" r="4"/><circle class="pt" cx="242.5" cy="263.9" r="4"/><circle class="pt" cx="405.0" cy="169.5" r="4"/><circle class="pt" cx="567.5" cy="78.4" r="4"/><circle class="pt" cx="730.0" cy="148.0" r="4"/>
+</svg>
