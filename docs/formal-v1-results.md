@@ -67,6 +67,7 @@ The result is best described as **contention-induced performance degradation and
 
 ## Limitations
 
+- The chronological collection order matched **48 of 50 scheduled positions**. In block/run 7, the final two conditions were collected as 75% then 0% rather than the scheduled 0% then 75%. Both observations remained valid and the block still contained all five conditions exactly once; the deviation is documented in [formal-v1-final-validation.md](formal-v1-final-validation.md).
 - `configured_neighbor_load_percent` is an experimental control setting, not a direct hypervisor CPU-utilization measurement.
 - The experiment uses one physical host, one virtualization platform/configuration, and one benchmark workload, so the numerical effect size should not be generalized to all virtualized systems.
 - Formal v1 contains 10 matched blocks. This is sufficient to reveal a clear effect in this setup, but larger experiments could characterize tail behavior and rare interference events more precisely.

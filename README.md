@@ -117,7 +117,8 @@ The within-load IQR rule flags two low-throughput observations:
 
 Both are retained in the primary analysis because their VM1 and VM2 logs are technically valid. Excluding only these two observations still gives an **8.03%** mean throughput reduction at 100% load.
 
-Full results: [`docs/formal-v1-results.md`](docs/formal-v1-results.md)
+Full results: [`docs/formal-v1-results.md`](docs/formal-v1-results.md)  
+Final repository/data validation: [`docs/formal-v1-final-validation.md`](docs/formal-v1-final-validation.md)
 
 ---
 

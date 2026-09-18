@@ -1,5 +1,7 @@
 # Formal-v1 Final Validation
 
+Date: 2026-09-18
+
 This document records the final seal-check of the completed Formal-v1 dataset and repository state.
 
 ## Dataset inventory
@@ -102,7 +104,7 @@ Final figures are stored under `figures/formal_v1/`.
 
 ## Historical records
 
-`docs/formal-v1-session1-validation.md` is intentionally retained as a historical checkpoint describing the first 25 trials before Formal-v1 was completed. Statements in that document such as “Session 2 is pending” describe the repository state at that checkpoint and should not be read as the current project status.
+`docs/formal-v1-session1-validation.md` is intentionally retained as a historical checkpoint describing the first 25 trials before Formal-v1 was completed. It is now explicitly marked as historical and points readers to the completed Formal-v1 results.
 
 The current project status is defined by `README.md`, this final validation record, and `docs/formal-v1-results.md`.
 
