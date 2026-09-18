@@ -68,6 +68,19 @@ The result is best described as **contention-induced performance degradation and
 ## Limitations
 
 - `configured_neighbor_load_percent` is an experimental control setting, not a direct hypervisor CPU-utilization measurement.
-- The VM2 CPU-time proxy confirms that the four stress levels were materially different, but it should not be interpreted as ESXi/host scheduler telemetry.
 - The experiment uses one physical host, one virtualization platform/configuration, and one benchmark workload, so the numerical effect size should not be generalized to all virtualized systems.
 - Formal v1 contains 10 matched blocks. This is sufficient to reveal a clear effect in this setup, but larger experiments could characterize tail behavior and rare interference events more precisely.
+
+
+## Reproducibility
+
+The complete accepted dataset is archived as 50 VM1 benchmark logs and 40 paired VM2 contention logs. From the repository root, install the analysis dependencies and regenerate the final CSVs and figures with:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 analysis/analyze_formal_v1.py
+```
+
+The final analyzer checks the expected 50/40 file inventory, load/run identities, successful exit status, clock-synchronization metadata, VM2 worker/method configuration, and contention-window coverage before writing final outputs.
+
+The original blocked-randomized schedule remains at `experiments/formal_v1_schedule.csv`. Pilot, smoke-test, and session-1 checkpoint artifacts are retained for provenance but are not pooled into the final Formal-v1 dataset.

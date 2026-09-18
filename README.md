@@ -150,9 +150,16 @@ results/processed/formal_v1_sensitivity_tests.csv
 results/processed/formal_v1_iqr_outliers.csv
 ```
 
-The original formal-v1 session-1 raw logs and interim validation artifacts remain preserved in their existing locations. The completed 50-run dataset was validated before the final tables above were generated.
+The complete formal-v1 raw archive is preserved in the repository: **50 VM1 benchmark logs** under `results/raw/formal_v1/` and **40 paired VM2 contention logs** under `results/contention/formal_v1/`. The session-1 interim validation artifacts remain preserved as a historical checkpoint.
 
-The existing analysis tooling remains available in `analysis/`, including `analyze_results.py` and log-validation utilities used during collection and validation.
+The completed dataset can be reproduced with the dedicated final analyzer:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 analysis/analyze_formal_v1.py
+```
+
+The earlier `analyze_results.py` and log-validation utilities remain available because they were used during pilot, smoke, and collection-stage validation.
 
 ---
 

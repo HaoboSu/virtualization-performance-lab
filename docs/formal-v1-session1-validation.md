@@ -1,11 +1,13 @@
 # Formal-v1 session 1: data and validation
 
-Session 1 contains **25 of the 50 planned benchmark trials**, collected on 2026-09-16: five runs at each configured neighboring-VM load of 0%, 25%, 50%, 75%, and 100%. Its 20 nonzero-load trials have matching VM2 logs. The archived files pass the current role, metadata, execution, schedule, and recorded-window checks. Session 2 is pending; this is an interim data release, not a completed formal experiment.
+> **Historical checkpoint:** This document records the state of Formal-v1 after the first 25 of 50 trials. Formal-v1 has since been completed at 50/50 trials. For current project status and final results, see [formal-v1-results.md](formal-v1-results.md). The raw-data directories linked below now contain both sessions.
+
+Session 1 contains **25 of the 50 planned benchmark trials**, collected on 2026-09-16: five runs at each configured neighboring-VM load of 0%, 25%, 50%, 75%, and 100%. Its 20 nonzero-load trials have matching VM2 logs. The archived files passed the role, metadata, execution, schedule, and recorded-window checks. At the time of this checkpoint, Session 2 was still pending; it has since been completed and is included in the final Formal-v1 archive.
 
 ## Archived data
 
-- [VM1 benchmark logs](../results/raw/formal_v1/): 25 files, including five baselines.
-- [VM2 load logs](../results/contention/formal_v1/): 20 files.
+- [VM1 benchmark logs](../results/raw/formal_v1/): the current directory contains the complete 50-run archive; the Session-1 subset is runs 1–5, 25 files including five baselines.
+- [VM2 load logs](../results/contention/formal_v1/): the current directory contains all 40 paired contention logs; the Session-1 subset is runs 1–5, 20 files.
 - [Session-1 schedule](../experiments/formal_v1_session1_schedule.csv): the rows with `session=1` from the [unchanged full schedule](../experiments/formal_v1_schedule.csv).
 - [Per-run metrics](../results/processed/formal_v1_session1_results.csv), [interim summary](../results/processed/formal_v1_session1_summary.csv), and [coverage checks](../results/processed/formal_v1_session1_coverage.csv).
 
@@ -143,4 +145,4 @@ PY
 
 For an independent order/cooldown check, sort the 25 trial windows by start time and compare their `(load, run)` identities with the session-1 schedule. A nonzero trial starts at its VM2 `started_at` and ends at the later of its two `finished_at` values; a baseline starts at `warmup_started_at` and ends at its VM1 `finished_at`. Subtract each preceding end from the next start to calculate the gap.
 
-The next collection item is block 6, run 6, baseline (0%). Continue with blocks 6–10 in the original schedule and retain these session-1 snapshots as an explicitly partial release.
+Historical note: the next collection item at the time of this checkpoint was block 6, run 6, baseline (0%). Blocks 6–10 were subsequently completed under the original schedule. This document is retained as an explicitly partial Session-1 snapshot; use [formal-v1-results.md](formal-v1-results.md) for the completed experiment.

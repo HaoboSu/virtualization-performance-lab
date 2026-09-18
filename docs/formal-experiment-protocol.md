@@ -6,6 +6,8 @@ Measure how increasing CPU pressure in `contention-vm` changes Sysbench CPU thro
 
 The independent variable is the CPU load configured inside the neighboring VM. It is not a direct measurement of total host CPU utilization.
 
+> **Protocol status:** Formal-v1 collection is complete at **50/50 trials**. This document is retained as the pre-specified collection protocol. Final results are reported in [formal-v1-results.md](formal-v1-results.md).
+
 ## Design
 
 | Item | Formal-v1 setting |
@@ -27,7 +29,7 @@ The independent variable is the CPU load configured inside the neighboring VM. I
 
 This revision follows smoke-v1's timing failure and precedes formal data collection. New logs carry `collection_protocol: cpu_fixed_v1`. Run the [smoke-v2 rehearsal](smoke-v2-quickstart.md) under these settings before starting the formal schedule. Do not combine pilot/smoke-v1 observations with this dataset because the load method changed.
 
-Ten repetitions are the first formal collection stage. The dataset can later be extended to 20 repetitions per condition without changing the file naming or analysis workflow.
+Formal-v1 used ten repetitions per condition, as specified here. Any future extension to 20 repetitions per condition should be treated as a separate follow-on dataset rather than silently changing the completed Formal-v1 result.
 
 ## Why use blocked randomization
 
